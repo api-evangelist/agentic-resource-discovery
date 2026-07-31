@@ -1,0 +1,28 @@
+generated: '2026-07-31'
+method: searched
+source:
+- https://api.github.com/repos/ards-project/ard-spec/releases
+- https://api.github.com/repos/ards-project/ard-spec/tags
+- https://github.com/ards-project/ard-spec/blob/main/spec/ard.md
+type: Releases
+note: There is no release train. Zero GitHub releases and zero tags across the organization; the only
+  version statement is a line of markdown at the top of spec/ard.md, and it does not agree with the version
+  in the OpenAPI title or the conformance CLI. For a specification implementers are expected to track,
+  the absence of a tagged, citable version is the most consequential process gap in the project.
+summary:
+  releases: 0
+  tags: 0
+declared_versions:
+- artifact: spec/ard.md
+  version: v0.9 (Draft)
+  status: Proposal
+  dated: '2026-05-28'
+- artifact: spec/schemas/ard.openapi.yaml
+  version: 0.5.0
+  note: OpenAPI info.title 'Agentic Resource Discovery Registry API 0.5.0'
+- artifact: conformance/bin/conformance-test
+  version: 0.5.0
+- artifact: ai-catalog manifest specVersion
+  version: '1.0'
+  note: the manifest format version publishers declare, distinct from the ARD version
+releases: []

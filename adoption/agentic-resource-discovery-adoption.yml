@@ -1,0 +1,300 @@
+generated: '2026-07-31'
+method: probed
+source:
+- all/*/apis.yml (host inventory)
+- https://agenticresourcediscovery.org/ref_implementations/
+type: Adoption
+note: Claiming and shipping are counted separately, and neither is inferred. Publishers were found by
+  fetching /.well-known/ai-catalog.json on every absolute host advertised in the catalog plus each host's
+  derived apex; registries were exercised over their own documented endpoints. A manifest cannot be derived
+  on a publisher's behalf — it is served from their domain or it does not exist.
+probe:
+  date: '2026-07-31'
+  path: /.well-known/ai-catalog.json
+  domains_probed: 43838
+  domains_reachable: 37751
+  manifest_responses: 12
+  distinct_publishers: 9
+  fully_conformant_publishers: 0
+  publishers_passing_official_tool:
+  - clickhouse.com
+  - huggingface.co
+  - zapier.com
+  - roboflow.com
+  publishers_failing_official_tool:
+  - airtable.com
+  - artie.com
+  - datarobot.com
+  - fundraiseup.com
+  - opus.pro
+publishers:
+- domain: airtable.com
+  entries: 10
+  spec_version_declared: '1.0'
+  structural_grade: flavored
+  hard_failures:
+  - root-collections-removed-by-adr-0003
+  media_types:
+  - application/agent-skill+json
+  - application/mcp-server-card+json
+  - application/openapi+json
+  representative_queries: 29
+  trust_manifests: 0
+  cors: '*'
+  content_type: application/json
+- domain: artie.com
+  entries: 1
+  spec_version_declared: '1.0'
+  structural_grade: flavored
+  hard_failures:
+  - entry-no-description
+  - entry-no-displayName
+  - no-host-object
+  media_types:
+  - application/mcp-server-card+json
+  representative_queries: 0
+  trust_manifests: 0
+  cors: null
+  content_type: application/ai-catalog+json
+- domain: clickhouse.com
+  entries: 12
+  spec_version_declared: '1.0'
+  structural_grade: near-conformant
+  hard_failures: []
+  media_types:
+  - application/ai-skill+md
+  - application/ai-skill-archive+gzip
+  - application/linkset+json
+  - application/mcp-server-card+json
+  representative_queries: 26
+  trust_manifests: 0
+  cors: '*'
+  content_type: application/json
+- domain: datarobot.com
+  entries: 10
+  spec_version_declared: '1.0'
+  structural_grade: flavored
+  hard_failures:
+  - entry-identifier-not-urn-air
+  - host-no-identifier
+  media_types:
+  - application/ai-skill
+  representative_queries: 0
+  trust_manifests: 0
+  cors: '*'
+  content_type: application/json
+- domain: fundraiseup.com
+  entries: 1
+  spec_version_declared: '1.0'
+  structural_grade: flavored
+  hard_failures:
+  - entry-no-description
+  - entry-no-displayName
+  media_types:
+  - application/mcp-server-card+json
+  representative_queries: 0
+  trust_manifests: 0
+  cors: '*'
+  content_type: application/ai-catalog+json
+- domain: huggingface.co
+  entries: 1
+  spec_version_declared: '1.0'
+  structural_grade: near-conformant
+  hard_failures: []
+  media_types:
+  - application/ai-registry+json
+  representative_queries: 0
+  trust_manifests: 0
+  cors: https://huggingface.co
+  content_type: application/json
+- domain: opus.pro
+  entries: 1
+  spec_version_declared: '0.1'
+  structural_grade: flavored
+  hard_failures:
+  - entry-identifier-not-urn-air
+  media_types:
+  - application/vnd.mcp+json
+  representative_queries: 10
+  trust_manifests: 1
+  cors: null
+  content_type: application/json
+- domain: roboflow.com
+  entries: 3
+  spec_version_declared: '1.0'
+  structural_grade: near-conformant
+  hard_failures: []
+  media_types:
+  - application/ai-catalog+json
+  - application/mcp-server-card+json
+  - application/openapi+json
+  representative_queries: 15
+  trust_manifests: 0
+  cors: null
+  content_type: application/json
+- domain: zapier.com
+  entries: 13
+  spec_version_declared: '1.0'
+  structural_grade: near-conformant
+  hard_failures: []
+  media_types:
+  - application/json
+  - application/mcp-server-card+json
+  - application/vnd.oai.openapi
+  - text/html
+  - text/markdown
+  - text/plain
+  representative_queries: 29
+  trust_manifests: 0
+  cors: '*'
+  content_type: application/json
+coalition_check:
+  note: The eleven organizations on the contributors logo wall, probed across every domain the catalog
+    holds for them plus their known developer and product subdomains.
+  domains_probed: 127
+  domains_reachable: 123
+  organizations_serving_a_manifest:
+  - Hugging Face
+  - Cisco
+  hosts_found:
+  - ai-catalog.outshift.io
+  - hf.co
+  - huggingface-hf-discover.hf.space
+  - huggingface.co
+  organizations_serving_nothing:
+  - Google
+  - Microsoft
+  - GitHub
+  - Databricks
+  - Salesforce
+  - Snowflake
+  - Nvidia
+  - GoDaddy
+  - ServiceNow
+  - Amazon Web Services
+reference_implementations:
+- name: Hugging Face Discover
+  operator: Hugging Face
+  base_url: https://huggingface-hf-discover.hf.space
+  search_results_by_query:
+  - query: send transactional email
+    results: 4
+  - query: convert a pdf to markdown
+    results: 10
+  - query: look up a company's filings
+    results: 8
+  - query: book a flight
+    results: 0
+  - query: query a data warehouse
+    results: 10
+  index_size_from_explore_facets: null
+  type_buckets: []
+  list_envelope_keys:
+  - detail
+  list_conformant_items_array: false
+  referrals_returned: 1
+  notes: null
+- name: GitHub Agent Finder
+  operator: GitHub
+  base_url: https://agentfinder.github.com/api/v1
+  search_results_by_query:
+  - query: send transactional email
+    results: 7
+  - query: convert a pdf to markdown
+    results: 3
+  - query: look up a company's filings
+    results: 5
+  - query: book a flight
+    results: 1
+  - query: query a data warehouse
+    results: 10
+  index_size_from_explore_facets: 1188
+  type_buckets:
+  - value: application/ai-skill
+    count: 850
+  - value: application/mcp-server+json
+    count: 184
+  - value: application/vnd.github.copilot-plugin
+    count: 154
+  list_envelope_keys:
+  - offset
+  - pageSize
+  - results
+  - total
+  list_conformant_items_array: false
+  referrals_returned: 0
+  notes: null
+- name: Ora Directory
+  operator: Ora
+  base_url: https://ora.ai/api/ard
+  search_results_by_query:
+  - query: send transactional email
+    results: 10
+  - query: convert a pdf to markdown
+    results: 10
+  - query: look up a company's filings
+    results: 10
+  - query: book a flight
+    results: 10
+  - query: query a data warehouse
+    results: 10
+  index_size_from_explore_facets: 5518
+  type_buckets:
+  - value: Paid capability
+    count: 1995
+  - value: Agent skill
+    count: 1616
+  - value: Documentation
+    count: 684
+  - value: MCP server
+    count: 427
+  - value: llms.txt
+    count: 235
+  - value: Ora-indexed product
+    count: 200
+  - value: OpenAPI
+    count: 124
+  - value: application/pcc-capability+json
+    count: 41
+  - value: application/json
+    count: 39
+  - value: application/vnd.oai.openapi+json
+    count: 21
+  - value: GraphQL API
+    count: 20
+  - value: application/mcp-server+json
+    count: 18
+  list_envelope_keys:
+  - items
+  - pageToken
+  - total
+  list_conformant_items_array: true
+  referrals_returned: 1
+  notes: the operator's edge resets connections from a non-browser client; identical requests succeed
+    from curl, so every Ora figure here was collected that way
+- name: Cisco AI Catalog (AGNTCY)
+  operator: Cisco
+  base_url: https://ai-catalog.outshift.io/v1
+  search_results_by_query:
+  - query: send transactional email
+    results: 0
+  - query: convert a pdf to markdown
+    results: 0
+  - query: look up a company's filings
+    results: 0
+  - query: book a flight
+    results: 0
+  - query: query a data warehouse
+    results: 0
+  index_size_from_explore_facets: null
+  type_buckets: []
+  list_envelope_keys:
+  - nextPageToken
+  - results
+  - totalCount
+  list_conformant_items_array: false
+  referrals_returned: 0
+  notes: null
+federation_finding: Federation is specified, implemented and empty. Across the four reference registries
+  the only referral returned by anyone points at a second registry run by the same operator; no registry
+  refers a client to another vendor.

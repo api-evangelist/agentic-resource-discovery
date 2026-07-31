@@ -1,0 +1,377 @@
+generated: '2026-07-31'
+method: searched
+source:
+- https://github.com/ards-project/ard-spec/blob/main/spec/ard.md
+- https://agenticresourcediscovery.org/contributors/
+- https://github.com/ards-project/ard-spec/blob/main/.github/CODEOWNERS
+type: People
+note: 'The coalition as ARD itself publishes it. `role` records the strength of the claim: author (named
+  on the specification title page), code_owner (can approve a normative change), acknowledged (thanked
+  for contributions and feedback). ARD publishes no participant roster, no governance body membership
+  and no seats — those fields are null because the standard does not have them yet, not because they were
+  not harvested.'
+summary:
+  people: 44
+  authors: 3
+  code_owners: 3
+  acknowledged: 41
+  with_org: 44
+  with_github_id: 3
+  in_governance_bodies: 0
+  bodies: {}
+people:
+- name: Junjie Bu
+  org: Google
+  github_id: mindpower
+  role: author
+  title: Project lead (CODEOWNERS — can approve a normative change)
+  body: Specification authors
+  sources:
+  - https://github.com/ards-project/ard-spec/blob/main/spec/ard.md
+  - https://github.com/ards-project/ard-spec/blob/main/.github/CODEOWNERS
+- name: R.V.Guha
+  org: Microsoft
+  github_id: rvguha
+  role: author
+  title: Project lead (CODEOWNERS — can approve a normative change)
+  body: Specification authors
+  sources:
+  - https://github.com/ards-project/ard-spec/blob/main/spec/ard.md
+  - https://github.com/ards-project/ard-spec/blob/main/.github/CODEOWNERS
+- name: Shaun Smith
+  org: Hugging Face
+  github_id: evalstate
+  role: author
+  title: Project lead (CODEOWNERS — can approve a normative change)
+  body: Specification authors
+  sources:
+  - https://github.com/ards-project/ard-spec/blob/main/spec/ard.md
+  - https://github.com/ards-project/ard-spec/blob/main/.github/CODEOWNERS
+- name: Jeffrey Damick
+  org: Amazon Web Services
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Martin Ristov
+  org: Amazon Web Services
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Guillaume De Saint Marc
+  org: Cisco
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Karen Jaworski
+  org: Cisco
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Luca Muscariello
+  org: Cisco
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Ramiz Polic
+  org: Cisco
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Vijoy Pandey
+  org: Cisco
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Jonathan Keller
+  org: Databricks
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Vinod Marur
+  org: Databricks
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Evan Boyle
+  org: GitHub
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Jeremy Moseley
+  org: GitHub
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Meagan Cojocar
+  org: GitHub
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Trent Jones
+  org: GitHub
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Scott Courtney
+  org: GoDaddy
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Alan Blount
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Antonio Gulli
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Ines David
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: John Murray
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Krishna Thota
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Natasha Balasubramanian
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Polong Lin
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Rao Surapaneni
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Sam Sharaf
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Sampath Kumar Maddula
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Srinivas Krishnan
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Todd Segal
+  org: Google
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Adam Zukor
+  org: Microsoft
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Chelsea Carter
+  org: Microsoft
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Dee Templeton
+  org: Microsoft
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Jennifer Marsman
+  org: Microsoft
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Kevin Scott
+  org: Microsoft
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Lindsey Li
+  org: Microsoft
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Lisa Jaloza
+  org: Microsoft
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Miesha Baker
+  org: Microsoft
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Ryan Nadel
+  org: Microsoft
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Shelby Delano
+  org: Microsoft
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Aysen Ilkhabar
+  org: Nvidia
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Mariano Gonzales
+  org: Salesforce
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Vijay Pandiarajan
+  org: Salesforce
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Baris Gultekin
+  org: Snowflake
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Vivek Raghunathan
+  org: Snowflake
+  github_id: null
+  role: acknowledged
+  title: null
+  body: null
+  sources:
+  - https://agenticresourcediscovery.org/contributors/

@@ -1,0 +1,73 @@
+generated: '2026-07-31'
+method: searched
+source: https://github.com/ards-project
+type: Repositories
+organization: ards-project
+summary:
+  total: 5
+  archived: 1
+  by_maturity:
+    unclassified: 4
+    governance: 1
+repositories:
+- name: .github
+  url: https://github.com/ards-project/.github
+  description: project profile
+  maturity: governance
+  stars: 0
+  forks: 0
+  open_issues: 0
+  archived: false
+  created: '2026-06-26'
+  updated: '2026-06-26'
+  license: null
+  topics: []
+- name: ard-connectors
+  url: https://github.com/ards-project/ard-connectors
+  description: Client-side connectors (Skills + MCP) to discover agentic resources via ARDS / Agent Finder
+    from Claude, ChatGPT, Copilot, and Gemini.
+  maturity: unclassified
+  stars: 13
+  forks: 9
+  open_issues: 2
+  archived: false
+  created: '2026-06-11'
+  updated: '2026-07-09'
+  license: null
+  topics: []
+- name: ard-docs
+  url: https://github.com/ards-project/ard-docs
+  description: Agentic Resource Discovery (ARD) specification  — documentation site
+  maturity: unclassified
+  stars: 13
+  forks: 9
+  open_issues: 2
+  archived: false
+  created: '2026-06-03'
+  updated: '2026-07-07'
+  license: Apache-2.0
+  topics: []
+- name: ard-spec
+  url: https://github.com/ards-project/ard-spec
+  description: Agentic Resource Discovery (ARD) specification
+  maturity: unclassified
+  stars: 410
+  forks: 47
+  open_issues: 40
+  archived: false
+  created: '2026-05-19'
+  updated: '2026-07-31'
+  license: Apache-2.0
+  topics: []
+- name: old-docs
+  url: https://github.com/ards-project/old-docs
+  description: Superseded docs — kept for history (see ards-project/docs)
+  maturity: unclassified
+  stars: 6
+  forks: 5
+  open_issues: 1
+  archived: true
+  created: '2026-05-21'
+  updated: '2026-06-03'
+  license: Apache-2.0
+  topics: []

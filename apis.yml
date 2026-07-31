@@ -1,0 +1,146 @@
+aid: agentic-resource-discovery
+url: https://raw.githubusercontent.com/api-evangelist/agentic-resource-discovery/refs/heads/main/apis.yml
+name: Agentic Resource Discovery (ARD)
+specificationVersion: 0.20
+kind: standard
+x-type: standards-body
+x-category: Specification
+x-host: null
+x-host-structure: null
+created: 2026-05-19T00:00:00.000Z
+modified: 2026-07-31
+position: Producing
+access: 3rd-Party
+description: >-
+  Agentic Resource Discovery (ARD) is a proposed open standard for the discovery layer that sits in
+  front of every agentic protocol — the step before invocation, where a client asks "what is
+  available for this task?" and gets back a ranked set of MCP servers, agent cards, skills,
+  workflows and APIs it could use. Publishers describe their resources once in an AI Catalog
+  manifest at /.well-known/ai-catalog.json on their own domain, anchored by a urn:air: URN derived
+  from that domain; independent discovery services crawl those manifests and expose them through a
+  small REST interface whose only mandatory endpoint is POST /search. It deliberately does not
+  execute anything — MCP, A2A and OpenAPI keep that job — and it deliberately does not try to be
+  the one registry, inverting the submit-to-a-registry model in favour of publish-to-your-own-domain.
+  Published as a v0.9 draft proposal on 28 May 2026 under Apache 2.0 by three authors at Microsoft,
+  Google and Hugging Face, with a contributors wall of eleven organizations. It has no foundation,
+  no charter, no participant roster and no working groups; it does have nine public architecture
+  decision records and an official conformance CLI. This repo profiles it as a coalition with
+  artifacts, and measures the distance between the specification and the endpoint.
+tags:
+- Agentic Resource Discovery
+- ARD
+- AI Catalog
+- Agent Discovery
+- Discovery
+- Well-Known URI
+- Media Types
+- Federation
+- MCP
+- A2A
+- Agent Skills
+- Standards
+- Standards Body
+- Specification
+- Machine Readability
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/agentic-resource-discovery.png
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
+apis:
+- aid: agentic-resource-discovery:ard-registry-api
+  name: ARD Registry API
+  description: >-
+    The discovery interface a conformant Agent Registry exposes. POST /search is the only mandatory
+    endpoint and takes a natural-language `text` query plus optional structured `filter`, returning
+    catalog entries ranked 0-100 by semantic relevance. POST /explore returns facet aggregations
+    over the matched set, GET /agents is deterministic paged browsing. This is the standard's own
+    contract, not an implementation of it — the OpenAPI declares no server, because every registry
+    is its own host, discovered through an application/ai-registry+json entry in a manifest.
+  humanURL: https://agenticresourcediscovery.org/spec/
+  tags:
+  - Discovery
+  - Search
+  - Federation
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/ard-discovery-openapi.yml
+  - type: Specification
+    url: https://agenticresourcediscovery.org/spec/
+  - type: Documentation
+    url: https://agenticresourcediscovery.org/how_ard_works/
+  - type: TestSuite
+    url: conformance/README.md
+- aid: agentic-resource-discovery:ai-catalog-manifest
+  name: AI Catalog Manifest
+  description: >-
+    The publishing half of the standard — the JSON manifest a domain serves at
+    /.well-known/ai-catalog.json declaring who the host is and what agentic resources it offers,
+    each entry typed by media type, identified by a domain-anchored urn:air: URN, and carrying an
+    optional trustManifest for identity, compliance attestations, provenance and a detached JWS
+    signature. Defined upstream by the ai-catalog project and extended here with discovery
+    attributes. This is the artifact an API provider actually has to write.
+  humanURL: https://agenticresourcediscovery.org/ai_catalog_spec/
+  tags:
+  - Discovery
+  - Metadata
+  - Well-Known URI
+  properties:
+  - type: JSONSchema
+    url: json-schema/ai-catalog.schema.json
+  - type: Specification
+    url: https://agenticresourcediscovery.org/ai_catalog_spec/
+  - type: Documentation
+    url: https://agenticresourcediscovery.org/how_to_publish/
+  - type: SourceCode
+    url: https://github.com/Agent-Card/ai-catalog
+common:
+- type: Website
+  url: https://agenticresourcediscovery.org
+- type: Specification
+  url: https://agenticresourcediscovery.org/spec/
+- type: SourceCode
+  url: https://github.com/ards-project/ard-spec
+- type: GitHubOrganization
+  url: https://github.com/ards-project
+- type: License
+  url: https://github.com/ards-project/ard-spec/blob/main/LICENSE
+- type: Contributing
+  url: https://github.com/ards-project/ard-spec#contributing
+- type: Participants
+  url: https://agenticresourcediscovery.org/contributors/
+- type: Governance
+  url: governance/agentic-resource-discovery-governance.yml
+- type: Conformance
+  url: conformance/agentic-resource-discovery-conformance.yml
+- type: TestSuite
+  url: https://github.com/ards-project/ard-spec/tree/main/conformance
+- type: ReferenceImplementation
+  url: https://agenticresourcediscovery.org/ref_implementations/
+- type: Adopters
+  url: adoption/agentic-resource-discovery-adoption.yml
+- type: Adoption
+  url: adoption/agentic-resource-discovery-adoption.yml
+- type: People
+  url: people/agentic-resource-discovery-people.yml
+- type: Companies
+  url: companies/agentic-resource-discovery-companies.yml
+- type: Leads
+  url: leads/agentic-resource-discovery-new-company-leads.yml
+- type: Repositories
+  url: repositories/agentic-resource-discovery-repositories.yml
+- type: Releases
+  url: releases/agentic-resource-discovery-releases.yml
+- type: Contributors
+  url: contributors/agentic-resource-discovery-contributors.yml
+- type: WorkingGroups
+  url: working-groups/agentic-resource-discovery-working-groups.yml
+- type: Taxonomy
+  url: taxonomy/agentic-resource-discovery-taxonomy.yml
+- type: Glossary
+  url: https://agenticresourcediscovery.org/glossary/
+- type: FAQ
+  url: https://agenticresourcediscovery.org/faq/
+- type: GettingStarted
+  url: https://agenticresourcediscovery.org/get_started/

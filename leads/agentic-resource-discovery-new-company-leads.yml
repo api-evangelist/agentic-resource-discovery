@@ -1,0 +1,10 @@
+generated: '2026-07-31'
+method: derived
+source: derived from agentic-resource-discovery/companies/agentic-resource-discovery-companies.yml
+type: Leads
+note: 'Coalition members with no repo in the network. ARD''s coalition is almost entirely hyperscalers
+  already scored in the catalog, which is itself the finding: unlike CAMARA, this standard''s participant
+  list yields nearly no new companies.'
+summary:
+  leads: 0
+leads: []

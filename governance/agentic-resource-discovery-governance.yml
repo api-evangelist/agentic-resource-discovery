@@ -1,0 +1,94 @@
+generated: '2026-07-31'
+method: searched
+source:
+- https://github.com/ards-project/ard-spec/blob/main/.github/CODEOWNERS
+- https://github.com/ards-project/ard-spec/tree/main/adr
+- https://agenticresourcediscovery.org/contributors/
+- https://github.com/ards-project/ard-spec/blob/main/README.md
+type: Governance
+note: ARD has no foundation, no charter, no CLA, no named governance body and no participant roster. What
+  it has instead is a CODEOWNERS file naming three individuals who can approve a normative change, a two-track
+  contribution rule, and a public ADR ledger. That is a real and reviewable governance model — it is just
+  an unusually small one for a specification carrying eleven corporate logos.
+host: null
+neutral_host: false
+foundation: null
+license: Apache-2.0 (ard-spec, ard-docs); ard-connectors carries no LICENSE file
+decision_process:
+  normative_changes: open an issue first for discussion and consensus among maintainers before a pull
+    request
+  other_changes: pull requests welcome directly (docs, examples, tooling, bug fixes)
+  approval: one approving review from a CODEOWNER; GitHub blocks self-approval, so an author needs one
+    of the other two
+  source: https://github.com/ards-project/ard-spec/blob/main/README.md
+code_owners:
+- github_id: rvguha
+  name: R.V.Guha
+  org: Microsoft
+  role: author + code owner
+- github_id: mindpower
+  name: Junjie Bu
+  org: Google
+  role: author + code owner
+- github_id: evalstate
+  name: Shaun Smith
+  org: Hugging Face
+  role: author + code owner
+bodies: []
+charter: null
+cla: null
+participant_roster: null
+meeting_minutes: null
+adr_ledger:
+  count: 9
+  accepted: 8
+  superseded: 1
+  records:
+  - id: '0001'
+    title: 'ADR-0001: Registry Introspection and Telemetry via `/explore`'
+    status: Superseded by ADR-0005
+  - id: '0002'
+    title: 'ADR-0002: Registry Search API Pagination'
+    status: Accepted
+  - id: '0003'
+    title: 'ADR-0003: URN Placeholder Naming Alignment with RFC 2606'
+    status: Accepted
+  - id: '0004'
+    title: 'ADR-0004: Exclusion of Complex EBNF Filters and Sorting from the Search API'
+    status: Accepted
+  - id: '0005'
+    title: 'ADR-0005: Registry Shared Query Model and POST /explore Endpoint'
+    status: Accepted (Implemented in v0.5.0)
+  - id: '0006'
+    title: 'ADR-0006: Search API Federation Parameter Placement'
+    status: Accepted (Implemented in v0.5.0)
+  - id: '0007'
+    title: 'ADR-0007: URN Naming Pattern Flexibility and Underscore Support'
+    status: Accepted
+  - id: 0008
+    title: 'ADR-0008: Renaming MCP Media Type to application/mcp-server-card+json'
+    status: Accepted
+  - id: 0009
+    title: 'ADR 0009: URN Namespace Identifier (NID) Length and Transition to "air"'
+    status: Accepted
+observed_inconsistencies:
+- what: conformance tool cites an ADR that does not contain the decision
+  detail: conformance-test v0.5.0 rejects a root `collections` array with 'Top-level collections were
+    REMOVED in ADR-0003'. ADR-0003 is about RFC 2606 placeholder domains and says nothing about collections;
+    no ADR in the repo mentions collections at all.
+  consequence: two of the nine publishers found in the wild fail conformance on this rule alone, including
+    one of the project's own reference implementations
+- what: docs site still documents a field the tool rejects
+  detail: the AI Catalog Standard page lists top-level `collections` as 'Links to sub-catalogs' while
+    the conformance tool treats its presence as a critical error
+- what: publishing guide contradicts ADR-0008
+  detail: the copy-pasteable template in how_to_publish uses `application/mcp-server+json`; ADR-0008 renamed
+    the type to `application/mcp-server-card+json`, and the project's own conformance tool warns on the
+    guide's own template
+- what: three DNS conventions across two documents
+  detail: spec §6.1 specifies SVCB at `_index._agents.<domain>` citing DNS-AID; how_to_publish specifies
+    TXT at `_catalog._agents.<domain>` and SRV at `_search._agents.<domain>`
+- what: version strings do not agree across artifacts
+  detail: spec/ard.md declares v0.9 (Draft), the OpenAPI title and the conformance CLI both declare 0.5.0,
+    and ADR-0005/0006 record decisions as 'Implemented in v0.5.0'; GitHub carries zero releases and zero
+    tags

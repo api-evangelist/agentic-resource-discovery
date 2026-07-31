@@ -1,0 +1,83 @@
+generated: '2026-07-31'
+method: searched
+source:
+- https://github.com/ards-project/ard-spec/blob/main/spec/ard.md
+- https://agenticresourcediscovery.org/glossary/
+- https://github.com/ards-project/ard-spec/blob/main/conformance/bin/conformance-test
+type: Taxonomy
+note: ARD's taxonomy is a media-type registry, not a subject taxonomy — the standard deliberately classifies
+  by ARTIFACT KIND and delegates the meaning of each kind to that artifact's own protocol. Reproduced
+  as the standard states it.
+classification_axis: IANA media type on each catalog entry (`type`)
+media_types:
+- type: application/a2a-agent-card+json
+  artifact: A2A Agent Card
+  iana_status: de-facto community standard, formal registration pending
+- type: application/mcp-server-card+json
+  artifact: MCP server card
+  iana_status: de-facto community standard, formal registration pending
+  note: renamed from application/mcp-server+json by ADR-0008
+- type: application/ai-catalog+json
+  artifact: a nested catalog / bundle
+- type: application/ai-registry+json
+  artifact: a dynamic ARD search endpoint
+  note: the entry type that carries a registry's base URL — how the API is discovered
+- type: application/agent-card+json
+  artifact: generic agent card
+- type: application/agent-skills+zip
+  artifact: packaged skill
+- type: application/agent-skills+gzip
+  artifact: packaged skill
+- type: text/markdown; profile="urn:air:agent-skills"
+  artifact: skill as markdown
+- type: application/ai-registry
+  artifact: registry (unsuffixed variant)
+endpoints:
+- path: POST /search
+  requirement: MUST
+  returns: entries ranked 0-100 by semantic relevance
+  note: '`text` required, `filter` optional'
+- path: POST /explore
+  requirement: OPTIONAL
+  returns: facet aggregations over the matched set
+  note: 501 when unimplemented; does not federate
+- path: GET /agents
+  requirement: OPTIONAL
+  returns: deterministic paged list
+  note: ListResponse requires an `items` array
+discovery_mechanisms:
+- mechanism: well-known URI
+  detail: https://{domain}/.well-known/ai-catalog.json
+- mechanism: robots.txt directive
+  detail: 'Agentmap: https://example.com/catalog.json'
+- mechanism: HTML link tag
+  detail: <link rel="ai-catalog" href="...">
+- mechanism: DNS
+  detail: SVCB with TXT fallback under _index._agents / _catalog._agents
+  note: the docs and the spec disagree on the labels and record types
+federation_modes:
+- auto
+- referrals
+- none
+ingestion_pipelines:
+  required:
+  - web crawl of ai-catalog.json
+  optional:
+  - git repositories
+  - npm
+  - OCI registries
+trust_layer:
+- identity (SPIFFE / DID / HTTPS FQDN)
+- attestations
+- provenance
+- detached JWS signature
+formal_schemas:
+- format: CDDL (RFC 8610)
+  role: authoritative abstract syntax
+  file: json-schema/ard.cddl
+- format: JSON Schema 2020-12
+  role: runtime manifest validation
+  file: json-schema/ai-catalog.schema.json
+- format: OpenAPI 3.1.0
+  role: the registry REST interface
+  file: openapi/_original/ard-discovery-openapi.yml

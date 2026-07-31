@@ -1,0 +1,223 @@
+generated: '2026-07-31'
+method: derived
+source: derived from agentic-resource-discovery/people/agentic-resource-discovery-people.yml + https://agenticresourcediscovery.org/contributors/
+type: Companies
+note: 'Two populations that do not coincide: eleven organizations on the contributors logo wall, and the
+  organizations with a named individual in the acknowledgements. Amazon Web Services contributes two acknowledged
+  individuals and is absent from the logo wall; ServiceNow is on the logo wall with no named individual.
+  Both facts are recorded rather than reconciled.'
+summary:
+  companies: 12
+  on_logo_wall: 11
+  with_named_people: 11
+  in_network: 12
+  with_authors: 3
+  logo_wall_without_named_individual:
+  - ServiceNow
+  named_individuals_not_on_logo_wall:
+  - Amazon Web Services
+companies:
+- name: Google
+  slug: google
+  in_network: true
+  on_logo_wall: true
+  participants: 13
+  authors: 1
+  code_owners: 1
+  acknowledged: 12
+  roles:
+  - acknowledged
+  - author
+  people:
+  - Alan Blount
+  - Antonio Gulli
+  - Ines David
+  - John Murray
+  - Junjie Bu
+  - Krishna Thota
+  - Natasha Balasubramanian
+  - Polong Lin
+  - Rao Surapaneni
+  - Sam Sharaf
+  - Sampath Kumar Maddula
+  - Srinivas Krishnan
+  - Todd Segal
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+  - https://github.com/ards-project/ard-spec/blob/main/spec/ard.md
+- name: Microsoft
+  slug: microsoft
+  in_network: true
+  on_logo_wall: true
+  participants: 11
+  authors: 1
+  code_owners: 1
+  acknowledged: 10
+  roles:
+  - acknowledged
+  - author
+  people:
+  - Adam Zukor
+  - Chelsea Carter
+  - Dee Templeton
+  - Jennifer Marsman
+  - Kevin Scott
+  - Lindsey Li
+  - Lisa Jaloza
+  - Miesha Baker
+  - R.V.Guha
+  - Ryan Nadel
+  - Shelby Delano
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+  - https://github.com/ards-project/ard-spec/blob/main/spec/ard.md
+- name: Cisco
+  slug: cisco
+  in_network: true
+  on_logo_wall: true
+  participants: 5
+  authors: 0
+  code_owners: 0
+  acknowledged: 5
+  roles:
+  - acknowledged
+  people:
+  - Guillaume De Saint Marc
+  - Karen Jaworski
+  - Luca Muscariello
+  - Ramiz Polic
+  - Vijoy Pandey
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: GitHub
+  slug: github
+  in_network: true
+  on_logo_wall: true
+  participants: 4
+  authors: 0
+  code_owners: 0
+  acknowledged: 4
+  roles:
+  - acknowledged
+  people:
+  - Evan Boyle
+  - Jeremy Moseley
+  - Meagan Cojocar
+  - Trent Jones
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Amazon Web Services
+  slug: amazon-web-services
+  in_network: true
+  on_logo_wall: false
+  participants: 2
+  authors: 0
+  code_owners: 0
+  acknowledged: 2
+  roles:
+  - acknowledged
+  people:
+  - Jeffrey Damick
+  - Martin Ristov
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Databricks
+  slug: databricks
+  in_network: true
+  on_logo_wall: true
+  participants: 2
+  authors: 0
+  code_owners: 0
+  acknowledged: 2
+  roles:
+  - acknowledged
+  people:
+  - Jonathan Keller
+  - Vinod Marur
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Salesforce
+  slug: salesforce
+  in_network: true
+  on_logo_wall: true
+  participants: 2
+  authors: 0
+  code_owners: 0
+  acknowledged: 2
+  roles:
+  - acknowledged
+  people:
+  - Mariano Gonzales
+  - Vijay Pandiarajan
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Snowflake
+  slug: snowflake
+  in_network: true
+  on_logo_wall: true
+  participants: 2
+  authors: 0
+  code_owners: 0
+  acknowledged: 2
+  roles:
+  - acknowledged
+  people:
+  - Baris Gultekin
+  - Vivek Raghunathan
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: GoDaddy
+  slug: godaddy
+  in_network: true
+  on_logo_wall: true
+  participants: 1
+  authors: 0
+  code_owners: 0
+  acknowledged: 1
+  roles:
+  - acknowledged
+  people:
+  - Scott Courtney
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: Hugging Face
+  slug: hugging-face
+  in_network: true
+  on_logo_wall: true
+  participants: 1
+  authors: 1
+  code_owners: 1
+  acknowledged: 0
+  roles:
+  - author
+  people:
+  - Shaun Smith
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+  - https://github.com/ards-project/ard-spec/blob/main/spec/ard.md
+- name: Nvidia
+  slug: nvidia
+  in_network: true
+  on_logo_wall: true
+  participants: 1
+  authors: 0
+  code_owners: 0
+  acknowledged: 1
+  roles:
+  - acknowledged
+  people:
+  - Aysen Ilkhabar
+  sources:
+  - https://agenticresourcediscovery.org/contributors/
+- name: ServiceNow
+  slug: servicenow
+  in_network: true
+  on_logo_wall: true
+  participants: 0
+  authors: 0
+  code_owners: 0
+  acknowledged: 0
+  roles:
+  - supporter
+  sources:
+  - https://agenticresourcediscovery.org/contributors/

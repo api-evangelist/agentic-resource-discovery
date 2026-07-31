@@ -1,0 +1,106 @@
+generated: '2026-07-31'
+method: searched
+source: https://github.com/ards-project
+type: Contributors
+organization: ards-project
+summary:
+  contributors: 18
+  repositories_checked: 4
+  total_contributions: 271
+contributors:
+- github_id: rvguha
+  contributions: 153
+  repositories:
+  - ard-connectors
+  - ard-docs
+  - ard-spec
+  repository_count: 3
+- github_id: mindpower
+  contributions: 87
+  repositories:
+  - .github
+  - ard-connectors
+  - ard-docs
+  - ard-spec
+  repository_count: 4
+- github_id: evalstate
+  contributions: 10
+  repositories:
+  - ard-docs
+  - ard-spec
+  repository_count: 2
+- github_id: msampathkumar
+  contributions: 3
+  repositories:
+  - ard-docs
+  repository_count: 1
+- github_id: yangbaechu
+  contributions: 3
+  repositories:
+  - ard-spec
+  repository_count: 1
+- github_id: kthota-g
+  contributions: 2
+  repositories:
+  - ard-connectors
+  repository_count: 1
+- github_id: zeroasterisk
+  contributions: 2
+  repositories:
+  - ard-docs
+  repository_count: 1
+- github_id: hammer-build
+  contributions: 1
+  repositories:
+  - ard-connectors
+  repository_count: 1
+- github_id: lgecse
+  contributions: 1
+  repositories:
+  - ard-docs
+  repository_count: 1
+- github_id: liady
+  contributions: 1
+  repositories:
+  - ard-docs
+  repository_count: 1
+- github_id: muscariello
+  contributions: 1
+  repositories:
+  - ard-docs
+  repository_count: 1
+- github_id: BenMcGit
+  contributions: 1
+  repositories:
+  - ard-spec
+  repository_count: 1
+- github_id: domfarolino
+  contributions: 1
+  repositories:
+  - ard-spec
+  repository_count: 1
+- github_id: juanferrub
+  contributions: 1
+  repositories:
+  - ard-spec
+  repository_count: 1
+- github_id: oliverwehrens
+  contributions: 1
+  repositories:
+  - ard-spec
+  repository_count: 1
+- github_id: x0cipher
+  contributions: 1
+  repositories:
+  - ard-spec
+  repository_count: 1
+- github_id: jdamick
+  contributions: 1
+  repositories:
+  - ard-spec
+  repository_count: 1
+- github_id: jrajaratnam
+  contributions: 1
+  repositories:
+  - ard-spec
+  repository_count: 1

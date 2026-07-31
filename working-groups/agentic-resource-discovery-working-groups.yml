@@ -1,0 +1,17 @@
+generated: '2026-07-31'
+method: searched
+source:
+- https://agenticresourcediscovery.org/
+- https://agenticresourcediscovery.org/contributors/
+- https://github.com/ards-project/ard-spec
+type: WorkingGroups
+note: ARD publishes no working groups, no calendar and no meeting minutes. The specification refers to
+  a 'working group joint submission' for IANA media-type registration, but no group is named, chartered
+  or rostered anywhere on the site or in the repositories. Recorded as an absence, not omitted.
+summary:
+  working_groups: 0
+working_groups: []
+referenced_but_unnamed:
+- reference: working group joint submission
+  context: spec §3.3, on pending IANA registration of the MCP and A2A media types
+  source: https://github.com/ards-project/ard-spec/blob/main/spec/ard.md

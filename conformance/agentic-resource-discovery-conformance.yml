@@ -1,0 +1,42 @@
+generated: '2026-07-31'
+method: searched
+source:
+- https://github.com/ards-project/ard-spec/tree/main/conformance
+- https://github.com/ards-project/ard-spec/blob/main/.github/workflows/conformance.yml
+type: Conformance
+note: 'ARD ships something most standards do not: an official, zero-dependency conformance CLI that validates
+  both a manifest and a live registry, wired into CI. Everything measured in adoption/ was run through
+  it. That is a genuine strength — and it is also how the specification''s internal contradictions became
+  visible, because the tool disagrees with the documentation in two places.'
+programme:
+  certification: null
+  self_certification: true
+  machine_readable_results: false
+  public_results_register: null
+tool:
+  name: conformance-test
+  version: 0.5.0
+  language: Python, zero dependencies (optional jsonschema for strict schema checks)
+  modes:
+  - manifest <file|url>
+  - registry <base_url>
+  ci: GitHub Actions workflow in the spec repo
+  local_copy: conformance/bin/conformance-test
+checks_enforced_by_tool:
+- manifest parses as JSON
+- strict JSON Schema validation when jsonschema is installed
+- identifier matches urn:air:<publisher>[:<namespace>]:<agent-name>
+- exactly one of url or data per entry (value-or-reference)
+- representativeQueries sizing
+- media type is one of the standard discovery types (warning)
+- no root-level collections array (critical)
+- 'registry: POST /search returns a results list'
+- 'registry: GET /agents returns an items array'
+- 'registry: POST /explore returns a facets object'
+gaps:
+- The tool is the only conformance authority and it is not versioned with the spec — it declares 0.5.0
+  against a v0.9 specification.
+- Three of the nine publishers found in the wild return 403 to the tool's default HTTP client, so a publisher
+  cannot be tested over the wire without spoofing a browser — and neither can a crawler, which is the
+  mechanism the whole standard depends on.
+- No conformance result is published anywhere, by anyone, in machine-readable form.
