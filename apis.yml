@@ -1,7 +1,7 @@
 aid: agentic-resource-discovery
 url: https://raw.githubusercontent.com/api-evangelist/agentic-resource-discovery/refs/heads/main/apis.yml
 name: Agentic Resource Discovery (ARD)
-specificationVersion: 0.20
+specificationVersion: '0.23'
 kind: standard
 x-type: standards-body
 x-category: Specification
