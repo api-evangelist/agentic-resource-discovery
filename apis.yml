@@ -49,38 +49,15 @@ maintainers:
   X: apievangelist
   url: https://apievangelist.com
 apis:
-- aid: agentic-resource-discovery:ard-registry-api
-  name: ARD Registry API
-  description: >-
-    The discovery interface a conformant Agent Registry exposes. POST /search is the only mandatory
-    endpoint and takes a natural-language `text` query plus optional structured `filter`, returning
-    catalog entries ranked 0-100 by semantic relevance. POST /explore returns facet aggregations
-    over the matched set, GET /agents is deterministic paged browsing. This is the standard's own
-    contract, not an implementation of it — the OpenAPI declares no server, because every registry
-    is its own host, discovered through an application/ai-registry+json entry in a manifest.
-  humanURL: https://agenticresourcediscovery.org/spec/
-  tags:
-  - Discovery
-  - Search
-  - Federation
-  properties:
-  - type: OpenAPI
-    url: openapi/_original/ard-discovery-openapi.yml
-  - type: Specification
-    url: https://agenticresourcediscovery.org/spec/
-  - type: Documentation
-    url: https://agenticresourcediscovery.org/how_ard_works/
-  - type: TestSuite
-    url: conformance/README.md
 - aid: agentic-resource-discovery:ai-catalog-manifest
   name: AI Catalog Manifest
   description: >-
-    The publishing half of the standard — the JSON manifest a domain serves at
-    /.well-known/ai-catalog.json declaring who the host is and what agentic resources it offers,
-    each entry typed by media type, identified by a domain-anchored urn:air: URN, and carrying an
-    optional trustManifest for identity, compliance attestations, provenance and a detached JWS
-    signature. Defined upstream by the ai-catalog project and extended here with discovery
-    attributes. This is the artifact an API provider actually has to write.
+    The publishing half of the standard — the JSON manifest a domain serves at /.well-known/ai-catalog.json
+    declaring who the host is and what agentic resources it offers, each entry typed by media type, identified
+    by a domain-anchored urn:air: URN, and carrying an optional trustManifest for identity, compliance
+    attestations, provenance and a detached JWS signature. Defined upstream by the ai-catalog project
+    and extended here with discovery attributes. This is the artifact an API provider actually has to
+    write.
   humanURL: https://agenticresourcediscovery.org/ai_catalog_spec/
   tags:
   - Discovery
@@ -95,6 +72,51 @@ apis:
     url: https://agenticresourcediscovery.org/how_to_publish/
   - type: SourceCode
     url: https://github.com/Agent-Card/ai-catalog
+- aid: agentic-resource-discovery:agentic-resource-discovery-agents-api
+  name: Agentic Resource Discovery (ARD) Agents API
+  description: The Agents API from Agentic Resource Discovery (ARD) — 1 operation(s) for agents.
+  humanURL: https://agenticresourcediscovery.org/spec/
+  tags:
+  - Agents
+  properties:
+  - type: OpenAPI
+    url: openapi/agentic-resource-discovery-agents-api-openapi.yml
+  - type: Specification
+    url: https://agenticresourcediscovery.org/spec/
+  - type: Documentation
+    url: https://agenticresourcediscovery.org/how_ard_works/
+  - type: TestSuite
+    url: conformance/README.md
+- aid: agentic-resource-discovery:agentic-resource-discovery-explore-api
+  name: Agentic Resource Discovery (ARD) Explore API
+  description: The Explore API from Agentic Resource Discovery (ARD) — 1 operation(s) for explore.
+  humanURL: https://agenticresourcediscovery.org/spec/
+  tags:
+  - Explore
+  properties:
+  - type: OpenAPI
+    url: openapi/agentic-resource-discovery-explore-api-openapi.yml
+  - type: Specification
+    url: https://agenticresourcediscovery.org/spec/
+  - type: Documentation
+    url: https://agenticresourcediscovery.org/how_ard_works/
+  - type: TestSuite
+    url: conformance/README.md
+- aid: agentic-resource-discovery:agentic-resource-discovery-search-api
+  name: Agentic Resource Discovery (ARD) Search API
+  description: The Search API from Agentic Resource Discovery (ARD) — 1 operation(s) for search.
+  humanURL: https://agenticresourcediscovery.org/spec/
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/agentic-resource-discovery-search-api-openapi.yml
+  - type: Specification
+    url: https://agenticresourcediscovery.org/spec/
+  - type: Documentation
+    url: https://agenticresourcediscovery.org/how_ard_works/
+  - type: TestSuite
+    url: conformance/README.md
 common:
 - type: IssueTracker
   url: https://github.com/Agent-Card/ai-catalog/issues
