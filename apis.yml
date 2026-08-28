@@ -1,6 +1,17 @@
 aid: agentic-resource-discovery
 url: https://raw.githubusercontent.com/api-evangelist/agentic-resource-discovery/refs/heads/main/apis.yml
 name: Agentic Resource Discovery (ARD)
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 specificationVersion: '0.23'
 kind: standard
 x-type: standards-body
