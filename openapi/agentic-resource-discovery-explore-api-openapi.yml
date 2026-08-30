@@ -1,0 +1,182 @@
+openapi: 3.2.0
+info:
+  title: Agentic Resource Discovery Registry Explore API
+  version: 0.5.0
+  description: 'Universal federated discovery API specification for AI agents, tools, and capabilities.
+
+    Allows LLM orchestrators to semantically search and discover registries for relevant capabilities
+
+    and enables registry-to-registry federated query routing.
+
+    '
+tags:
+- name: Explore
+paths:
+  /explore:
+    post:
+      summary: Dynamic Registry Introspection
+      description: "Aggregates statistical facets and bucketing over the matched search space. \nReturns counts instead of ranked catalog entries. \n"
+      operationId: exploreRegistry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExploreRequest'
+      responses:
+        '200':
+          description: Successful explore operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExploreResponse'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '501':
+          description: Dynamic registry exploration is not implemented by this server.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          $ref: '#/components/responses/500InternalError'
+      tags:
+      - Explore
+components:
+  schemas:
+    ExploreFacetBucket:
+      type: object
+      required:
+      - value
+      - count
+      properties:
+        value:
+          type: string
+        count:
+          type: integer
+      additionalProperties: false
+    ExploreRequest:
+      type: object
+      required:
+      - resultType
+      properties:
+        query:
+          $ref: '#/components/schemas/QueryModel'
+        resultType:
+          type: object
+          required:
+          - facets
+          properties:
+            facets:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExploreFacetRequest'
+      additionalProperties: false
+    ExploreResponse:
+      type: object
+      required:
+      - resultType
+      - facets
+      properties:
+        resultType:
+          type: string
+          enum:
+          - facets
+        facets:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ExploreFacetResult'
+      additionalProperties: false
+    QueryModel:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Natural language description narrows the set by semantic relevance.
+          example: find me a weather lookup tool
+        filter:
+          type: object
+          description: "Structured constraints. Keys are field paths (can be dot-separated for nested fields). \nValues are arrays or scalar values.\n"
+          additionalProperties:
+            oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          example:
+            type:
+            - application/mcp-server-card+json
+            trustManifest.attestations.type:
+            - SOC2-Type2
+      additionalProperties: false
+    ExploreFacetRequest:
+      type: object
+      required:
+      - field
+      properties:
+        field:
+          type: string
+          description: Dot-separated path of the catalogEntry property to aggregate.
+          example: type
+        limit:
+          type: integer
+          default: 20
+        minCount:
+          type: integer
+          default: 1
+      additionalProperties: false
+    ExploreFacetResult:
+      type: object
+      required:
+      - buckets
+      properties:
+        buckets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExploreFacetBucket'
+        otherCount:
+          type: integer
+      additionalProperties: false
+    Error:
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          type: string
+          description: Standard uppercase error classification code.
+          example: INVALID_ARGUMENT
+        message:
+          type: string
+          description: Human-readable description explaining the error.
+          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
+  responses:
+    500InternalError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    401Unauthorized:
+      description: Credentials missing or rejected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    429TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    400BadRequest:
+      description: Malformed request payload or invalid syntax.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
