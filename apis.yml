@@ -37,6 +37,9 @@ description: >-
   no charter, no participant roster and no working groups; it does have nine public architecture
   decision records and an official conformance CLI. This repo profiles it as a coalition with
   artifacts, and measures the distance between the specification and the endpoint.
+x-docs-platform: mkdocs
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-17
 tags:
 - Agentic Resource Discovery
 - ARD
