@@ -6,9 +6,7 @@ info:
 
     Allows LLM orchestrators to semantically search and discover registries for relevant capabilities
 
-    and enables registry-to-registry federated query routing.
-
-    '
+    and enables registry-to-registry federated query routing.'
 tags:
 - name: Search
 paths:
@@ -17,9 +15,7 @@ paths:
       summary: Semantic Search Registry
       description: 'Query a registry with natural language to find matching capabilities.
 
-        Accepts a shared semantic and structural query object. Supports multi-hop federation.
-
-        '
+        Accepts a shared semantic and structural query object. Supports multi-hop federation.'
       operationId: searchAgents
       requestBody:
         required: true
@@ -46,6 +42,28 @@ paths:
       - Search
 components:
   schemas:
+    QueryModel:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Natural language description narrows the set by semantic relevance.
+          example: find me a weather lookup tool
+        filter:
+          type: object
+          description: "Structured constraints. Keys are field paths (can be dot-separated for nested fields). \nValues are arrays or scalar values.\n"
+          additionalProperties:
+            oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          example:
+            type:
+            - application/mcp-server-card+json
+            trustManifest.attestations.type:
+            - SOC2-Type2
+      additionalProperties: false
     RegistryReferral:
       type: object
       required:
@@ -73,12 +91,44 @@ components:
           format: uri
           description: Endpoint URL for the referred registry's search route.
           example: https://finder.nlweb.ai/search
+    SearchResponse:
+      type: object
+      required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResultItem'
+        referrals:
+          type: array
+          description: List of upstream registries recommended to the client. Only returned in 'referrals' federation mode.
+          items:
+            $ref: '#/components/schemas/RegistryReferral'
+        pageToken:
+          type: string
+          description: Token for paging subsequent results.
+      additionalProperties: false
     SearchQueryModel:
       allOf:
       - $ref: '#/components/schemas/QueryModel'
       - type: object
         required:
         - text
+    Error:
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          type: string
+          description: Standard uppercase error classification code.
+          example: INVALID_ARGUMENT
+        message:
+          type: string
+          description: Human-readable description explaining the error.
+          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
     SearchRequest:
       type: object
       required:
@@ -120,63 +170,9 @@ components:
           format: uri
           description: The URL endpoint of the registry where this entry was indexed.
           example: https://registry.acme.com/api/v1/
-    QueryModel:
-      type: object
-      properties:
-        text:
-          type: string
-          description: Natural language description narrows the set by semantic relevance.
-          example: find me a weather lookup tool
-        filter:
-          type: object
-          description: "Structured constraints. Keys are field paths (can be dot-separated for nested fields). \nValues are arrays or scalar values.\n"
-          additionalProperties:
-            oneOf:
-            - type: string
-            - type: array
-              items:
-                type: string
-          example:
-            type:
-            - application/mcp-server-card+json
-            trustManifest.attestations.type:
-            - SOC2-Type2
-      additionalProperties: false
-    SearchResponse:
-      type: object
-      required:
-      - results
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchResultItem'
-        referrals:
-          type: array
-          description: List of upstream registries recommended to the client. Only returned in 'referrals' federation mode.
-          items:
-            $ref: '#/components/schemas/RegistryReferral'
-        pageToken:
-          type: string
-          description: Token for paging subsequent results.
-      additionalProperties: false
-    Error:
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          type: string
-          description: Standard uppercase error classification code.
-          example: INVALID_ARGUMENT
-        message:
-          type: string
-          description: Human-readable description explaining the error.
-          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
   responses:
-    500InternalError:
-      description: Internal server error.
+    400BadRequest:
+      description: Malformed request payload or invalid syntax.
       content:
         application/json:
           schema:
@@ -187,14 +183,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    401Unauthorized:
-      description: Credentials missing or rejected.
+    500InternalError:
+      description: Internal server error.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    400BadRequest:
-      description: Malformed request payload or invalid syntax.
+    401Unauthorized:
+      description: Credentials missing or rejected.
       content:
         application/json:
           schema:

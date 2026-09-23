@@ -6,9 +6,7 @@ info:
 
     Allows LLM orchestrators to semantically search and discover registries for relevant capabilities
 
-    and enables registry-to-registry federated query routing.
-
-    '
+    and enables registry-to-registry federated query routing.'
 tags:
 - name: Agents
 paths:
@@ -17,9 +15,7 @@ paths:
       summary: Browse Catalog Entries
       description: 'Deterministic, highly cacheable listing endpoint designed for developer portals.
 
-        Relies on strict EBNF database filtering instead of natural language search.
-
-        '
+        Relies on strict EBNF database filtering instead of natural language search.'
       operationId: listAgents
       parameters:
       - name: filter
@@ -67,14 +63,14 @@ paths:
       - Agents
 components:
   responses:
-    500InternalError:
-      description: Internal server error.
+    400BadRequest:
+      description: Malformed request payload or invalid syntax.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    401Unauthorized:
-      description: Credentials missing or rejected.
+    500InternalError:
+      description: Internal server error.
       content:
         application/json:
           schema:
@@ -85,8 +81,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    400BadRequest:
-      description: Malformed request payload or invalid syntax.
+    401Unauthorized:
+      description: Credentials missing or rejected.
       content:
         application/json:
           schema:

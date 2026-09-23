@@ -1,0 +1,34 @@
+# Front Door AI Index — agentic-resource-discovery — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: agentic-resource-discovery
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: agenticresourcediscovery.org
+  final_host: agenticresourcediscovery.org
+  ownership: own
+  owner: agentic-resource-discovery
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 25
+  host_score: 25
+  density: 62.5
+  words: 400
+  tiers:
+    agentic: 17
+    core: 4
+    model: 4
+  ambiguous: 3
+  top_terms:
+    agentic: 10
+    AI: 4
+    MCP: 3
+    agent: 3
+    chatbot: 2
+    copilot: 2
+    ChatGPT: 1
+    Claude: 1
+    Gemini: 1
+    Hugging Face: 1

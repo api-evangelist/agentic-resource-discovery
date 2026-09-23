@@ -6,16 +6,16 @@ info:
 
     Allows LLM orchestrators to semantically search and discover registries for relevant capabilities
 
-    and enables registry-to-registry federated query routing.
-
-    '
+    and enables registry-to-registry federated query routing.'
 tags:
 - name: Explore
 paths:
   /explore:
     post:
       summary: Dynamic Registry Introspection
-      description: "Aggregates statistical facets and bucketing over the matched search space. \nReturns counts instead of ranked catalog entries. \n"
+      description: 'Aggregates statistical facets and bucketing over the matched search space.
+
+        Returns counts instead of ranked catalog entries.'
       operationId: exploreRegistry
       requestBody:
         required: true
@@ -48,49 +48,6 @@ paths:
       - Explore
 components:
   schemas:
-    ExploreFacetBucket:
-      type: object
-      required:
-      - value
-      - count
-      properties:
-        value:
-          type: string
-        count:
-          type: integer
-      additionalProperties: false
-    ExploreRequest:
-      type: object
-      required:
-      - resultType
-      properties:
-        query:
-          $ref: '#/components/schemas/QueryModel'
-        resultType:
-          type: object
-          required:
-          - facets
-          properties:
-            facets:
-              type: array
-              items:
-                $ref: '#/components/schemas/ExploreFacetRequest'
-      additionalProperties: false
-    ExploreResponse:
-      type: object
-      required:
-      - resultType
-      - facets
-      properties:
-        resultType:
-          type: string
-          enum:
-          - facets
-        facets:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ExploreFacetResult'
-      additionalProperties: false
     QueryModel:
       type: object
       properties:
@@ -113,6 +70,35 @@ components:
             trustManifest.attestations.type:
             - SOC2-Type2
       additionalProperties: false
+    ExploreResponse:
+      type: object
+      required:
+      - resultType
+      - facets
+      properties:
+        resultType:
+          type: string
+          enum:
+          - facets
+        facets:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ExploreFacetResult'
+      additionalProperties: false
+    Error:
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          type: string
+          description: Standard uppercase error classification code.
+          example: INVALID_ARGUMENT
+        message:
+          type: string
+          description: Human-readable description explaining the error.
+          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
     ExploreFacetRequest:
       type: object
       required:
@@ -129,6 +115,17 @@ components:
           type: integer
           default: 1
       additionalProperties: false
+    ExploreFacetBucket:
+      type: object
+      required:
+      - value
+      - count
+      properties:
+        value:
+          type: string
+        count:
+          type: integer
+      additionalProperties: false
     ExploreFacetResult:
       type: object
       required:
@@ -141,29 +138,32 @@ components:
         otherCount:
           type: integer
       additionalProperties: false
-    Error:
+    ExploreRequest:
       type: object
       required:
-      - errorCode
-      - message
+      - resultType
       properties:
-        errorCode:
-          type: string
-          description: Standard uppercase error classification code.
-          example: INVALID_ARGUMENT
-        message:
-          type: string
-          description: Human-readable description explaining the error.
-          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
+        query:
+          $ref: '#/components/schemas/QueryModel'
+        resultType:
+          type: object
+          required:
+          - facets
+          properties:
+            facets:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExploreFacetRequest'
+      additionalProperties: false
   responses:
-    500InternalError:
-      description: Internal server error.
+    400BadRequest:
+      description: Malformed request payload or invalid syntax.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    401Unauthorized:
-      description: Credentials missing or rejected.
+    500InternalError:
+      description: Internal server error.
       content:
         application/json:
           schema:
@@ -174,8 +174,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    400BadRequest:
-      description: Malformed request payload or invalid syntax.
+    401Unauthorized:
+      description: Credentials missing or rejected.
       content:
         application/json:
           schema:

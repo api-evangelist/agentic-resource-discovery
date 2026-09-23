@@ -1,0 +1,30 @@
+{
+  "provider": "agentic-resource-discovery",
+  "sources": [
+    "_original/ard-discovery-openapi.yml"
+  ],
+  "outputs": [
+    "agentic-resource-discovery-agents-api-openapi.yml",
+    "agentic-resource-discovery-explore-api-openapi.yml",
+    "agentic-resource-discovery-search-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ard-discovery-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ard-discovery-openapi.yml: tagged paths POST /search -> Search",
+    "ard-discovery-openapi.yml: tagged paths POST /explore -> Explore",
+    "ard-discovery-openapi.yml: tagged paths GET /agents -> Agents",
+    "ard-discovery-openapi.yml: declared missing tag: Agents",
+    "ard-discovery-openapi.yml: declared missing tag: Explore",
+    "ard-discovery-openapi.yml: declared missing tag: Search",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "agentic-resource-discovery-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agentic-resource-discovery-explore-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agentic-resource-discovery-search-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}
