@@ -3,14 +3,19 @@ url: https://raw.githubusercontent.com/api-evangelist/agentic-resource-discovery
 name: Agentic Resource Discovery (ARD)
 deliveryModel:
   model: unknown
+  license_evidence:
+    not_product:
+    - agent-card/ai-catalog
+    - ards-project/ard-spec
   open_source: unknown
   commercial: false
   callable_host: false
   label: Delivery model not determined — needs a product licence on record
   confidence: low
   source:
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - openapi
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 specificationVersion: '0.23'
 kind: standard

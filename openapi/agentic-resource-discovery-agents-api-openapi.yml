@@ -62,32 +62,21 @@ paths:
       tags:
       - Agents
 components:
-  responses:
-    400BadRequest:
-      description: Malformed request payload or invalid syntax.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    500InternalError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    429TooManyRequests:
-      description: Rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    401Unauthorized:
-      description: Credentials missing or rejected.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          type: string
+          description: Standard uppercase error classification code.
+          example: INVALID_ARGUMENT
+        message:
+          type: string
+          description: Human-readable description explaining the error.
+          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
     ListResponse:
       type: object
       required:
@@ -103,17 +92,28 @@ components:
         pageToken:
           type: string
           description: Token for paginating subsequent results.
-    Error:
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          type: string
-          description: Standard uppercase error classification code.
-          example: INVALID_ARGUMENT
-        message:
-          type: string
-          description: Human-readable description explaining the error.
-          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
+  responses:
+    429TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    401Unauthorized:
+      description: Credentials missing or rejected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    400BadRequest:
+      description: Malformed request payload or invalid syntax.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    500InternalError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
