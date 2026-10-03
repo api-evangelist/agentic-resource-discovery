@@ -47,35 +47,60 @@ paths:
       tags:
       - Explore
 components:
+  responses:
+    401Unauthorized:
+      description: Credentials missing or rejected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    429TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    500InternalError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    400BadRequest:
+      description: Malformed request payload or invalid syntax.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          type: string
-          description: Standard uppercase error classification code.
-          example: INVALID_ARGUMENT
-        message:
-          type: string
-          description: Human-readable description explaining the error.
-          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
-    ExploreResponse:
+    ExploreRequest:
       type: object
       required:
       - resultType
-      - facets
       properties:
+        query:
+          $ref: '#/components/schemas/QueryModel'
         resultType:
-          type: string
-          enum:
-          - facets
-        facets:
           type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ExploreFacetResult'
+          required:
+          - facets
+          properties:
+            facets:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExploreFacetRequest'
+      additionalProperties: false
+    ExploreFacetResult:
+      type: object
+      required:
+      - buckets
+      properties:
+        buckets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExploreFacetBucket'
+        otherCount:
+          type: integer
       additionalProperties: false
     ExploreFacetBucket:
       type: object
@@ -104,23 +129,20 @@ components:
           type: integer
           default: 1
       additionalProperties: false
-    ExploreRequest:
+    Error:
       type: object
       required:
-      - resultType
+      - errorCode
+      - message
       properties:
-        query:
-          $ref: '#/components/schemas/QueryModel'
-        resultType:
-          type: object
-          required:
-          - facets
-          properties:
-            facets:
-              type: array
-              items:
-                $ref: '#/components/schemas/ExploreFacetRequest'
-      additionalProperties: false
+        errorCode:
+          type: string
+          description: Standard uppercase error classification code.
+          example: INVALID_ARGUMENT
+        message:
+          type: string
+          description: Human-readable description explaining the error.
+          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
     QueryModel:
       type: object
       properties:
@@ -143,40 +165,18 @@ components:
             trustManifest.attestations.type:
             - SOC2-Type2
       additionalProperties: false
-    ExploreFacetResult:
+    ExploreResponse:
       type: object
       required:
-      - buckets
+      - resultType
+      - facets
       properties:
-        buckets:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExploreFacetBucket'
-        otherCount:
-          type: integer
+        resultType:
+          type: string
+          enum:
+          - facets
+        facets:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ExploreFacetResult'
       additionalProperties: false
-  responses:
-    429TooManyRequests:
-      description: Rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    401Unauthorized:
-      description: Credentials missing or rejected.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    400BadRequest:
-      description: Malformed request payload or invalid syntax.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    500InternalError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
