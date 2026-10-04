@@ -47,87 +47,21 @@ paths:
       tags:
       - Explore
 components:
-  responses:
-    401Unauthorized:
-      description: Credentials missing or rejected.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    429TooManyRequests:
-      description: Rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    500InternalError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    400BadRequest:
-      description: Malformed request payload or invalid syntax.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    ExploreRequest:
+    ExploreResponse:
       type: object
       required:
       - resultType
+      - facets
       properties:
-        query:
-          $ref: '#/components/schemas/QueryModel'
         resultType:
-          type: object
-          required:
+          type: string
+          enum:
           - facets
-          properties:
-            facets:
-              type: array
-              items:
-                $ref: '#/components/schemas/ExploreFacetRequest'
-      additionalProperties: false
-    ExploreFacetResult:
-      type: object
-      required:
-      - buckets
-      properties:
-        buckets:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExploreFacetBucket'
-        otherCount:
-          type: integer
-      additionalProperties: false
-    ExploreFacetBucket:
-      type: object
-      required:
-      - value
-      - count
-      properties:
-        value:
-          type: string
-        count:
-          type: integer
-      additionalProperties: false
-    ExploreFacetRequest:
-      type: object
-      required:
-      - field
-      properties:
-        field:
-          type: string
-          description: Dot-separated path of the catalogEntry property to aggregate.
-          example: type
-        limit:
-          type: integer
-          default: 20
-        minCount:
-          type: integer
-          default: 1
+        facets:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ExploreFacetResult'
       additionalProperties: false
     Error:
       type: object
@@ -165,18 +99,84 @@ components:
             trustManifest.attestations.type:
             - SOC2-Type2
       additionalProperties: false
-    ExploreResponse:
+    ExploreFacetResult:
+      type: object
+      required:
+      - buckets
+      properties:
+        buckets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExploreFacetBucket'
+        otherCount:
+          type: integer
+      additionalProperties: false
+    ExploreFacetRequest:
+      type: object
+      required:
+      - field
+      properties:
+        field:
+          type: string
+          description: Dot-separated path of the catalogEntry property to aggregate.
+          example: type
+        limit:
+          type: integer
+          default: 20
+        minCount:
+          type: integer
+          default: 1
+      additionalProperties: false
+    ExploreRequest:
       type: object
       required:
       - resultType
-      - facets
       properties:
+        query:
+          $ref: '#/components/schemas/QueryModel'
         resultType:
-          type: string
-          enum:
-          - facets
-        facets:
           type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ExploreFacetResult'
+          required:
+          - facets
+          properties:
+            facets:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExploreFacetRequest'
       additionalProperties: false
+    ExploreFacetBucket:
+      type: object
+      required:
+      - value
+      - count
+      properties:
+        value:
+          type: string
+        count:
+          type: integer
+      additionalProperties: false
+  responses:
+    429TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    500InternalError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    400BadRequest:
+      description: Malformed request payload or invalid syntax.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    401Unauthorized:
+      description: Credentials missing or rejected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

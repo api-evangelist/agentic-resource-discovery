@@ -42,53 +42,6 @@ paths:
       - Search
 components:
   schemas:
-    SearchQueryModel:
-      allOf:
-      - $ref: '#/components/schemas/QueryModel'
-      - type: object
-        required:
-        - text
-    SearchResultItem:
-      allOf:
-      - $ref: ./ai-catalog.schema.json#/$defs/catalogEntry
-      type: object
-      required:
-      - score
-      - source
-      properties:
-        score:
-          type: integer
-          minimum: 0
-          maximum: 100
-          description: 'Semantic relevance rating (0 to 100) computed by the registry. Note: This is not a security or trust score.'
-          example: 95
-        source:
-          type: string
-          format: uri
-          description: The URL endpoint of the registry where this entry was indexed.
-          example: https://registry.acme.com/api/v1/
-    QueryModel:
-      type: object
-      properties:
-        text:
-          type: string
-          description: Natural language description narrows the set by semantic relevance.
-          example: find me a weather lookup tool
-        filter:
-          type: object
-          description: "Structured constraints. Keys are field paths (can be dot-separated for nested fields). \nValues are arrays or scalar values.\n"
-          additionalProperties:
-            oneOf:
-            - type: string
-            - type: array
-              items:
-                type: string
-          example:
-            type:
-            - application/mcp-server-card+json
-            trustManifest.attestations.type:
-            - SOC2-Type2
-      additionalProperties: false
     Error:
       type: object
       required:
@@ -103,46 +56,6 @@ components:
           type: string
           description: Human-readable description explaining the error.
           example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
-    SearchResponse:
-      type: object
-      required:
-      - results
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchResultItem'
-        referrals:
-          type: array
-          description: List of upstream registries recommended to the client. Only returned in 'referrals' federation mode.
-          items:
-            $ref: '#/components/schemas/RegistryReferral'
-        pageToken:
-          type: string
-          description: Token for paging subsequent results.
-      additionalProperties: false
-    SearchRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          $ref: '#/components/schemas/SearchQueryModel'
-        federation:
-          type: string
-          enum:
-          - auto
-          - referrals
-          - none
-          default: auto
-        pageSize:
-          type: integer
-          default: 10
-          description: Maximum number of search results to return.
-        pageToken:
-          type: string
-          description: Pagination token.
-      additionalProperties: false
     RegistryReferral:
       type: object
       required:
@@ -170,13 +83,94 @@ components:
           format: uri
           description: Endpoint URL for the referred registry's search route.
           example: https://finder.nlweb.ai/search
+    SearchRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          $ref: '#/components/schemas/SearchQueryModel'
+        federation:
+          type: string
+          enum:
+          - auto
+          - referrals
+          - none
+          default: auto
+        pageSize:
+          type: integer
+          default: 10
+          description: Maximum number of search results to return.
+        pageToken:
+          type: string
+          description: Pagination token.
+      additionalProperties: false
+    QueryModel:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Natural language description narrows the set by semantic relevance.
+          example: find me a weather lookup tool
+        filter:
+          type: object
+          description: "Structured constraints. Keys are field paths (can be dot-separated for nested fields). \nValues are arrays or scalar values.\n"
+          additionalProperties:
+            oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          example:
+            type:
+            - application/mcp-server-card+json
+            trustManifest.attestations.type:
+            - SOC2-Type2
+      additionalProperties: false
+    SearchResponse:
+      type: object
+      required:
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResultItem'
+        referrals:
+          type: array
+          description: List of upstream registries recommended to the client. Only returned in 'referrals' federation mode.
+          items:
+            $ref: '#/components/schemas/RegistryReferral'
+        pageToken:
+          type: string
+          description: Token for paging subsequent results.
+      additionalProperties: false
+    SearchResultItem:
+      allOf:
+      - $ref: ./ai-catalog.schema.json#/$defs/catalogEntry
+      type: object
+      required:
+      - score
+      - source
+      properties:
+        score:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: 'Semantic relevance rating (0 to 100) computed by the registry. Note: This is not a security or trust score.'
+          example: 95
+        source:
+          type: string
+          format: uri
+          description: The URL endpoint of the registry where this entry was indexed.
+          example: https://registry.acme.com/api/v1/
+    SearchQueryModel:
+      allOf:
+      - $ref: '#/components/schemas/QueryModel'
+      - type: object
+        required:
+        - text
   responses:
-    401Unauthorized:
-      description: Credentials missing or rejected.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     429TooManyRequests:
       description: Rate limit exceeded.
       content:
@@ -191,6 +185,12 @@ components:
             $ref: '#/components/schemas/Error'
     400BadRequest:
       description: Malformed request payload or invalid syntax.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    401Unauthorized:
+      description: Credentials missing or rejected.
       content:
         application/json:
           schema:

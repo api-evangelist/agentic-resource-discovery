@@ -62,13 +62,37 @@ paths:
       tags:
       - Agents
 components:
+  schemas:
+    Error:
+      type: object
+      required:
+      - errorCode
+      - message
+      properties:
+        errorCode:
+          type: string
+          description: Standard uppercase error classification code.
+          example: INVALID_ARGUMENT
+        message:
+          type: string
+          description: Human-readable description explaining the error.
+          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
+    ListResponse:
+      type: object
+      required:
+      - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: ./ai-catalog.schema.json#/$defs/catalogEntry
+        total:
+          type: integer
+          description: Total count of matching entries in the registry.
+        pageToken:
+          type: string
+          description: Token for paginating subsequent results.
   responses:
-    401Unauthorized:
-      description: Credentials missing or rejected.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     429TooManyRequests:
       description: Rate limit exceeded.
       content:
@@ -87,33 +111,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  schemas:
-    ListResponse:
-      type: object
-      required:
-      - items
-      properties:
-        items:
-          type: array
-          items:
-            $ref: ./ai-catalog.schema.json#/$defs/catalogEntry
-        total:
-          type: integer
-          description: Total count of matching entries in the registry.
-        pageToken:
-          type: string
-          description: Token for paginating subsequent results.
-    Error:
-      type: object
-      required:
-      - errorCode
-      - message
-      properties:
-        errorCode:
-          type: string
-          description: Standard uppercase error classification code.
-          example: INVALID_ARGUMENT
-        message:
-          type: string
-          description: Human-readable description explaining the error.
-          example: The filter expression syntax 'type = MCP' is invalid. Did you mean 'type = application/mcp-server-card+json'?
+    401Unauthorized:
+      description: Credentials missing or rejected.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
