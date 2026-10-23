@@ -180,3 +180,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+x-provenance:
+  method: harvested
+  publisher: Agentic Resource Discovery (ARD)
+  source: https://raw.githubusercontent.com/ards-project/ard-spec/HEAD/spec/schemas/ard.openapi.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
